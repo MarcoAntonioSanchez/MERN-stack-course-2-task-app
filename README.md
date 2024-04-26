@@ -35,3 +35,19 @@ To test an endpoint (url), you need to start a "New request", wich will allow yo
 Note: The local / localhost API's can't be tested vía browser apps, like Postman Web.
 
 Once you send a type of request (GET, POST, etc.) you can save it into a collection, in this case both requests (GET - localhost:500) and (POST - localhost:5000/tasks) have been saved into a new created collection, under the name: MERN Tasks App, to re-use in further implementations over the project.
+
+## Setup MongoDB
+The first step to use MongoDB is signup on the official website: https://www.mongodb.com/.
+Once you have your active account on MongoDB, you will be prompted to set a "cluster", with the option to set a custom name for this cluster, select a location for the server and the cloud service behind it. Choosen options for this project: rMiloshCluster, Location US-1 and AWS server.
+Now you will be prompted to select wich software is beign used to make a connection to MongoDB, choosen option for this project: Native drivers (node.js).
+Automatically the mongodb.com site will get your public IP address to allow the connectivity to MongoDB cluster, only from that specific IP address, as a security layer.
+Next, and almost final step, is to generate a URI, you will be prompted with the example code for install and setting a node.js environment setup using MongoDB npm's package and there you will find the URI, example:
+
+"mongodb+srv://<username>:<password>@<clustername>.5hgn0ny.mongodb.net/?retryWrites=true&w=majority&appName=<clustername>"
+
+### Environment variables
+To use environment variables, you need to install dotenv npm's package, with command: npm i dotenv -D.
+Next you need to create a ".dotenv" file on the root of your project, where you are going to save the variables (key) name's and value's.
+As a security layer, you are going to set the following environment variable:
+
+MONGO_URI=mongodb+srv://<username>:<password>@<clustername>.5hgn0ny.mongodb.net/?retryWrites=true&w=majority&appName=<clustername>
