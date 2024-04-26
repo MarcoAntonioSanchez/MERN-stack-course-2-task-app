@@ -14,3 +14,10 @@ Recomendation: You can begin either with the front-end or back-end, it's up to y
 Move to the backend folder, with command "cd backend".
 Create main .js file, with command "touch server.js".
 This will be the main .js file for the project.
+
+## 5. Initialize GIT
+With command "git init".
+Git will help by versioning your projects based on stages / steps.
+Remember to add .gitignore file with node_modules folder's name in it to prevent the push of the node_modules folder to your repository.
+With command "touch .gitignore".
+Adding "node_modules" to the first line.
