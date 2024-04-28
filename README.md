@@ -71,8 +71,6 @@ MONGO_URI=mongodb+srv://{user-name}:{password}@{cluster-name}.5hgn0ny.mongodb.ne
 
 The real values in the MongoDB cluster's URI where replaced with {tags-like-this}, so you can see the most closest to a real (non-modified) URI.
 
-Also, it's recommended (for security reasons) to save these real values replaced with {tags-like-this} as environment variables.
-
 ## Database model and schema
 A database model refers to the logical structure or layout of a database and how to data will be stored.
 
