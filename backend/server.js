@@ -34,8 +34,14 @@ app.post("/api/tasks", async (req, res)=> {
 });
 
 // Get or read tasks
-app.get("/api/tasks", async (req, res)=> {
-    
+app.get("/api/tasks", async (req, res)=> { // async arrow function
+    try { // try / catch block
+        const tasks = await Task.find(); // Get all tasks, with await
+        res.status(200).json(tasks); // Status 200 for ok response
+    } catch (error) { // Error catch
+        console.log("RVN - Error ocure while getting tasks from DB"); // Error handling
+        res.status(500).json({msg: error.messaje}); // Respond with a json message (erorr).
+    }
 })
 
 const PORT  = process.env.PORT || 5000; // Use of environment variables for port number, or, directly 5000
