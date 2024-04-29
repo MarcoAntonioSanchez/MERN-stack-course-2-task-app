@@ -2,7 +2,7 @@ require('dotenv').config() // Remove for production
 const express = require("express");
 const connectDB = require("./config/connectDB");
 const mongoose = require("mongoose");
-const Task = require("./model/task-model")
+const Task = require("./models/task-model")
 const taskRoutes = require("./routes/taskRoute");
 
 const app = express();
