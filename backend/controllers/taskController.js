@@ -1,5 +1,6 @@
 const Task  = require("../models/task-model");
 
+// Create a new task
 const createTask = async (req, res) => {
     try {
         const task = await Task.create(req.body); // Calling MongoDB create method to retrieve data into DB.
@@ -10,6 +11,7 @@ const createTask = async (req, res) => {
     }
 };
 
+// Get all current tasks
 const getTasks = async (req, res) => {
     try { // try / catch block
         const tasks = await Task.find(); // Get all tasks, with await
@@ -21,6 +23,7 @@ const getTasks = async (req, res) => {
     }
 }
 
+// Get a task
 const getTask = async (req, res) => {
     try {
         const {id} = req.params; // Getting the id param from the API url.
@@ -35,6 +38,7 @@ const getTask = async (req, res) => {
     }
 }
 
+// Delete task
 const deleteTask = async (req, res) => {
     try {
         const {id} = req.params;
@@ -48,4 +52,24 @@ const deleteTask = async (req, res) => {
     }
 }
 
-module.exports = { createTask, getTasks, getTask, deleteTask };
+// Update task
+
+const updateTask = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const task = await Task.findByIdAndUpdate(
+            {_id: id},
+            req.body,
+            {new: true,
+            runValidators: true // Running the Task model validators are a must for data beign trated as it has to be treated.
+        });
+        if (!task) {
+            return res.status(404).json(`No task with ID ${id}`);
+        }
+        res.status(200).json(task);
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
+}
+
+module.exports = { createTask, getTasks, getTask, deleteTask, updateTask };
