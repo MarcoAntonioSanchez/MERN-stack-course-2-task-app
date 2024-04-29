@@ -16,8 +16,22 @@ const getTasks = async (req, res) => {
         res.status(200).json(tasks); // Status 200 for ok response
     } catch (error) { // Error catch
         console.log("RVN - Error ocure while getting tasks from DB"); // Error handling
-        res.status(500).json({msg: error.messaje}); // Respond with a json message (erorr).
+        res.status(500).json({msg: error.message}); // Respond with a json message (erorr).
     }
 }
 
-module.exports = { createTask, getTasks };
+const getTask = async (req, res) => {
+    try {
+        const {id} = req.params; // Getting the id param from the API url.
+        const task = await Task.findById(id); // Using Task model to find the task with proportionated ID.
+        if (!task) {  // If the Task id it's not found, then...
+            return res.status(404).json(`No task with ID: ${id}`); // Status code for 404 not found and the corresponding message.
+        }
+        res.status(200).json(task); // If the task was found by it's ID, then reponse with 200 status code and the task as json.
+    } catch (error) {
+        console.log("RVN - Error getting that single task...");
+        res.status(500).json({msg: error.message}); // For DB error handling.
+    }
+}
+
+module.exports = { createTask, getTasks, getTask };
