@@ -14,6 +14,7 @@ const getTasks = async (req, res) => {
     try { // try / catch block
         const tasks = await Task.find(); // Get all tasks, with await
         res.status(200).json(tasks); // Status 200 for ok response
+        console.log(tasks);
     } catch (error) { // Error catch
         console.log("RVN - Error ocure while getting tasks from DB"); // Error handling
         res.status(500).json({msg: error.message}); // Respond with a json message (erorr).
@@ -34,4 +35,17 @@ const getTask = async (req, res) => {
     }
 }
 
-module.exports = { createTask, getTasks, getTask };
+const deleteTask = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const task = await Task.findByIdAndDelete(id); // Find task by it's ID and delete, function from mongoose Task model.
+        if (!task) {
+            return res.status(404).json(`No task with ID ${id}`);
+        }
+        res.status(200).send("Task deleted");
+    } catch (error) {
+        res.tatus(500).json({msg: error.message});
+    }
+}
+
+module.exports = { createTask, getTasks, getTask, deleteTask };
