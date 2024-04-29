@@ -19,7 +19,11 @@ app.use(express.urlencoded({extended: true}));
 // };
 
 // Routes
-app.use(taskRoutes);
+app.use("/api/tasks", taskRoutes);
+// Home or main route
+app.get("/", (req, res)=> {
+    res.send("Home Page");
+})
 
 const PORT  = process.env.PORT || 5000; // Use of environment variables for port number, or, directly 5000
 
