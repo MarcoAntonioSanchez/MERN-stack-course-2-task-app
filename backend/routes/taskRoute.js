@@ -21,6 +21,7 @@ router.get("/api/tasks/:id", getTask);
 router.delete("/api/tasks/:id", deleteTask);
 
 // Update a task
-router.put("/api/tasks/:id", updateTask)
+// router.put("/api/tasks/:id", updateTask)
+router.patch("/api/tasks/:id", updateTask) // Patch method for use case's where you just need to update a single field / attribute from the registry / DB object.
 
 module.exports = router; // Yuo only need to export the router, that's why the routes start with "router.get, router.post, etc.".
